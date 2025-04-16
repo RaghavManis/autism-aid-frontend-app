@@ -1,6 +1,7 @@
 
-import { useState, useRef } from "react";
+import React, { useState, useRef } from "react";
 import { Upload, File, X, CheckCircle, AlertCircle } from "lucide-react";
+import { getApiUrl } from '../config/apiConfig';
 
 const FileUploader = () => {
   const [file, setFile] = useState(null);
@@ -92,12 +93,13 @@ const FileUploader = () => {
     setError("");
 
     try {
-      // Create form data to send file
+      // Dynamically select the appropriate backend URL
+      const predictionUrl = getApiUrl('PREDICT', process.env.NODE_ENV);
+      
       const formData = new FormData();
       formData.append('file', file);
 
-      // Replace YOUR_BACKEND_URL with your actual API endpoint
-      const response = await fetch('YOUR_BACKEND_URL/predict', {
+      const response = await fetch(predictionUrl, {
         method: 'POST',
         body: formData,
       });
