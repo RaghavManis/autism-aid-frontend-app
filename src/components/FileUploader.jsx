@@ -91,26 +91,27 @@ const FileUploader = () => {
     setLoading(true);
     setError("");
 
-    // Here you'll integrate with your backend API
-    // For now, we'll simulate a response after a delay
     try {
-      // This is a placeholder for your actual API call
-      // Replace this with your actual backend integration
-      setTimeout(() => {
-        // Simulate a random result
-        const simulatedResult = {
-          prediction: Math.random() > 0.5 ? "positive" : "negative",
-          confidence: (Math.random() * 30 + 70).toFixed(2), // Random confidence between 70-100%
-          timestamp: new Date().toISOString()
-        };
-        
-        setResult(simulatedResult);
-        setLoading(false);
-      }, 2000);
-      
+      // Create form data to send file
+      const formData = new FormData();
+      formData.append('file', file);
+
+      // Replace YOUR_BACKEND_URL with your actual API endpoint
+      const response = await fetch('YOUR_BACKEND_URL/predict', {
+        method: 'POST',
+        body: formData,
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to process file');
+      }
+
+      const data = await response.json();
+      setResult(data);
     } catch (error) {
       console.error("Error processing file:", error);
       setError("Error processing the file. Please try again.");
+    } finally {
       setLoading(false);
     }
   };
