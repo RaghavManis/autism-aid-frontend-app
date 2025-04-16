@@ -1,7 +1,8 @@
-
-import { Brain, Code, ChevronRight, Check, Server } from "lucide-react";
+import React from 'react';
+import { Brain, Code, ChevronRight, Check, Server, Linkedin } from 'lucide-react';
 
 const About = () => {
+  // Hero Section
   return (
     <div className="fade-in">
       {/* Hero Section */}
@@ -213,8 +214,85 @@ const About = () => {
           </div>
         </div>
       </section>
-    </div>
-  );
-};
 
-export default About;
+      {/* New Team Members Section */}
+      const teamMembers = [
+        {
+          name: "Dr. Emily Chen",
+          role: "Lead AI Researcher",
+          bio: "Neural network expert with 10+ years of experience in machine learning and autism research.",
+          imageUrl: "https://images.unsplash.com/photo-1605810230434-7631ac76ec81?auto=format&fit=crop&w=500&h=500&q=80",
+          linkedin: "#"
+        },
+        {
+          name: "Alex Rodriguez",
+          role: "Software Engineering Lead",
+          bio: "Full-stack developer specializing in healthcare technology and AI integration.",
+          imageUrl: "https://images.unsplash.com/photo-1581092795360-fd1ca04f0952?auto=format&fit=crop&w=500&h=500&q=80",
+          linkedin: "#"
+        },
+        {
+          name: "Dr. Sarah Williams",
+          role: "Clinical Advisory Board",
+          bio: "Pediatric neurologist with extensive experience in autism spectrum disorders.",
+          imageUrl: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=500&h=500&q=80",
+          linkedin: "#"
+        }
+      ];
+
+      return (
+        <div className="fade-in">
+          {/* Team Members Section */}
+          <section className="bg-white dark:bg-gray-900 py-16">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+              <div className="text-center mb-12">
+                <h2 className="text-3xl font-bold mb-4">Meet Our Team</h2>
+                <p className="text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+                  The dedicated professionals behind AutismAid's mission to make autism screening more accessible
+                </p>
+              </div>
+
+              <div className="grid md:grid-cols-3 gap-8">
+                {teamMembers.map((member, index) => (
+                  <div 
+                    key={index} 
+                    className="bg-white dark:bg-gray-800 rounded-xl shadow-lg overflow-hidden transform transition-all duration-300 hover:scale-105 hover:shadow-xl"
+                  >
+                    <div className="relative">
+                      <img 
+                        src={member.imageUrl} 
+                        alt={member.name} 
+                        className="w-full h-64 object-cover object-center"
+                      />
+                      <div className="absolute top-4 right-4">
+                        <a 
+                          href={member.linkedin} 
+                          target="_blank" 
+                          rel="noopener noreferrer" 
+                          className="bg-white/80 dark:bg-gray-900/80 p-2 rounded-full hover:bg-white/90 dark:hover:bg-gray-900/90 transition-colors"
+                        >
+                          <Linkedin className="h-5 w-5 text-autism-purple" />
+                        </a>
+                      </div>
+                    </div>
+                    <div className="p-6 text-center">
+                      <h3 className="text-xl font-semibold mb-2 text-gray-800 dark:text-white">
+                        {member.name}
+                      </h3>
+                      <p className="text-autism-purple font-medium mb-4">
+                        {member.role}
+                      </p>
+                      <p className="text-gray-600 dark:text-gray-400">
+                        {member.bio}
+                      </p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </section>
+        </div>
+      );
+    }
+  
+  export default About;
