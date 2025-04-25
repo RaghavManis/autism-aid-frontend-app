@@ -1,10 +1,11 @@
-
 import React, { useState, useRef } from "react";
 import { Upload, File, X, CheckCircle, AlertCircle } from "lucide-react";
 import { getApiUrl } from '../config/apiConfig';
 
 const FileUploader = () => {
   const [file, setFile] = useState(null);
+  const [age, setAge] = useState('');
+  const [sex, setSex] = useState('');
   const [isDragging, setIsDragging] = useState(false);
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
@@ -89,15 +90,26 @@ const FileUploader = () => {
       return;
     }
 
+    if (!age) {
+      setError("Please enter the age.");
+      return;
+    }
+
+    if (!sex) {
+      setError("Please select the sex.");
+      return;
+    }
+
     setLoading(true);
     setError("");
 
     try {
-      // Dynamically select the appropriate backend URL
       const predictionUrl = getApiUrl('PREDICT', process.env.NODE_ENV);
       
       const formData = new FormData();
       formData.append('file', file);
+      formData.append('age', age);
+      formData.append('sex', sex);
 
       const response = await fetch(predictionUrl, {
         method: 'POST',
@@ -120,6 +132,39 @@ const FileUploader = () => {
 
   return (
     <div className="w-full max-w-3xl mx-auto">
+      <div className="mb-6 grid grid-cols-2 gap-4">
+        <div>
+          <label htmlFor="age" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+            Age (years)
+          </label>
+          <input
+            type="number"
+            id="age"
+            min="0"
+            max="100"
+            value={age}
+            onChange={(e) => setAge(e.target.value)}
+            className="w-full px-4 py-2 border border-gray-300 dark:border-gray-700 rounded-md focus:ring-autism-purple focus:border-autism-purple bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100"
+            placeholder="Enter age"
+          />
+        </div>
+        <div>
+          <label htmlFor="sex" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+            Sex
+          </label>
+          <select
+            id="sex"
+            value={sex}
+            onChange={(e) => setSex(e.target.value)}
+            className="w-full px-4 py-2 border border-gray-300 dark:border-gray-700 rounded-md focus:ring-autism-purple focus:border-autism-purple bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100"
+          >
+            <option value="">Select sex</option>
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+          </select>
+        </div>
+      </div>
+
       <div
         className={`border-2 border-dashed rounded-lg p-6 transition-colors
           ${isDragging ? 'bg-autism-purple/10 border-autism-purple' : 'bg-white dark:bg-gray-800 border-gray-300 dark:border-gray-700'}

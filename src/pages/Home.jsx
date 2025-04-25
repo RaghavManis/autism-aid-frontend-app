@@ -1,4 +1,3 @@
-
 import { Link } from "react-router-dom";
 import { ArrowRight, Brain, FileUp, Users, BookOpen } from "lucide-react";
 
@@ -44,7 +43,7 @@ const Home = () => {
               </div>
               <div className="absolute -bottom-6 -left-6 bg-autism-purple/90 rounded-lg p-4 shadow-lg hidden md:block">
                 <div className="text-white font-semibold">
-                  <span className="block text-2xl">90%+</span>
+                  <span className="block text-2xl">80%+</span>
                   <span className="text-sm opacity-90">Screening Accuracy</span>
                 </div>
               </div>
