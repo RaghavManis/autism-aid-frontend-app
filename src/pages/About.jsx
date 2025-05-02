@@ -1,32 +1,8 @@
+
 import React from 'react';
-import { Brain, Code, ChevronRight, Check, Server, Linkedin } from 'lucide-react';
+import { Brain, Code, ChevronRight, Check, Server } from 'lucide-react';
 
 const About = () => {
-  // Define team members array inside the component
-  const teamMembers = [
-    {
-      name: "Dr. Emily Chen",
-      role: "Lead AI Researcher",
-      bio: "Neural network expert with 10+ years of experience in machine learning and autism research.",
-      imageUrl: "https://images.unsplash.com/photo-1605810230434-7631ac76ec81?auto=format&fit=crop&w=500&h=500&q=80",
-      linkedin: "#"
-    },
-    {
-      name: "Alex Rodriguez",
-      role: "Software Engineering Lead",
-      bio: "Full-stack developer specializing in healthcare technology and AI integration.",
-      imageUrl: "https://images.unsplash.com/photo-1581092795360-fd1ca04f0952?auto=format&fit=crop&w=500&h=500&q=80",
-      linkedin: "#"
-    },
-    {
-      name: "Dr. Sarah Williams",
-      role: "Clinical Advisory Board",
-      bio: "Pediatric neurologist with extensive experience in autism spectrum disorders.",
-      imageUrl: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=500&h=500&q=80",
-      linkedin: "#"
-    }
-  ];
-
   return (
     <div className="fade-in">
       {/* Hero Section */}
@@ -147,7 +123,7 @@ const About = () => {
               },
               {
                 question: "What types of files can I upload?",
-                answer: "The system accepts various file types including images (JPEG, PNG), documents (PDF), and data files (CSV) containing behavioral or developmental information."
+                answer: "The system accepts various file types including images (JPEG, PNG), documents (PDF), data files (CSV), and .1D files containing behavioral or developmental information."
               },
               {
                 question: "Is my data secure?",
@@ -172,118 +148,6 @@ const About = () => {
                     {faq.answer}
                   </p>
                 </details>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Contact Section */}
-      <section className="bg-gray-50 dark:bg-gray-800 py-16">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="max-w-3xl mx-auto text-center">
-            <h2 className="text-3xl font-bold mb-4">Get In Touch</h2>
-            <p className="text-gray-600 dark:text-gray-300 mb-8">
-              Have questions about our autism screening tool or want to provide feedback?
-              We'd love to hear from you.
-            </p>
-            
-            <div className="bg-white dark:bg-gray-900 rounded-xl shadow-md p-8">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 text-left">
-                <div>
-                  <label htmlFor="name" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
-                    Name
-                  </label>
-                  <input
-                    type="text"
-                    id="name"
-                    className="w-full px-4 py-2 border border-gray-300 dark:border-gray-700 rounded-md focus:ring-autism-purple focus:border-autism-purple bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100"
-                    placeholder="Your name"
-                  />
-                </div>
-                
-                <div>
-                  <label htmlFor="email" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
-                    Email
-                  </label>
-                  <input
-                    type="email"
-                    id="email"
-                    className="w-full px-4 py-2 border border-gray-300 dark:border-gray-700 rounded-md focus:ring-autism-purple focus:border-autism-purple bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100"
-                    placeholder="your.email@example.com"
-                  />
-                </div>
-                
-                <div className="md:col-span-2">
-                  <label htmlFor="message" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
-                    Message
-                  </label>
-                  <textarea
-                    id="message"
-                    rows={4}
-                    className="w-full px-4 py-2 border border-gray-300 dark:border-gray-700 rounded-md focus:ring-autism-purple focus:border-autism-purple bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100"
-                    placeholder="Your message..."
-                  ></textarea>
-                </div>
-                
-                <div className="md:col-span-2">
-                  <button 
-                    type="submit"
-                    className="w-full md:w-auto button-primary"
-                  >
-                    Send Message
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Team Members Section */}
-      <section className="bg-white dark:bg-gray-900 py-16">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold mb-4">Meet Our Team</h2>
-            <p className="text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
-              The dedicated professionals behind AutismAid's mission to make autism screening more accessible
-            </p>
-          </div>
-
-          <div className="grid md:grid-cols-3 gap-8">
-            {teamMembers.map((member, index) => (
-              <div 
-                key={index} 
-                className="bg-white dark:bg-gray-800 rounded-xl shadow-lg overflow-hidden transform transition-all duration-300 hover:scale-105 hover:shadow-xl"
-              >
-                <div className="relative">
-                  <img 
-                    src={member.imageUrl} 
-                    alt={member.name} 
-                    className="w-full h-64 object-cover object-center"
-                  />
-                  <div className="absolute top-4 right-4">
-                    <a 
-                      href={member.linkedin} 
-                      target="_blank" 
-                      rel="noopener noreferrer" 
-                      className="bg-white/80 dark:bg-gray-900/80 p-2 rounded-full hover:bg-white/90 dark:hover:bg-gray-900/90 transition-colors"
-                    >
-                      <Linkedin className="h-5 w-5 text-autism-purple" />
-                    </a>
-                  </div>
-                </div>
-                <div className="p-6 text-center">
-                  <h3 className="text-xl font-semibold mb-2 text-gray-800 dark:text-white">
-                    {member.name}
-                  </h3>
-                  <p className="text-autism-purple font-medium mb-4">
-                    {member.role}
-                  </p>
-                  <p className="text-gray-600 dark:text-gray-400">
-                    {member.bio}
-                  </p>
-                </div>
               </div>
             ))}
           </div>
