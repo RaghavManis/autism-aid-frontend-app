@@ -11,7 +11,7 @@ export const getApiUrl = (endpoint, environment = 'production') => {
   const env = environment || 'production';
   
   if (endpoint === 'PREDICT') {
-    return `${API_BASE_URL[env]}/api/`;
+    return `${API_BASE_URL[env]}/api/predict`;
   }
   
   // For other endpoints, use the standard format

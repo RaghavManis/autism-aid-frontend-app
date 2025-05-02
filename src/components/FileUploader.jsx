@@ -117,8 +117,8 @@ const FileUploader = () => {
       
       const formData = new FormData();
       formData.append('file', file);
-      formData.append('age', age);
-      formData.append('sex', sex);
+      // formData.append('age', age);
+      // formData.append('sex', sex);
 
       // Simulate upload progress
       const progressInterval = setInterval(() => {
@@ -321,7 +321,7 @@ const FileUploader = () => {
                 <p className="text-lg font-medium">
                   {result.asdProbability > result.tdProbability 
                     ? "⚠️ You may have signs of Autism Spectrum Disorder (ASD)" 
-                    : "✅ You are doing well. No signs of Autism Spectrum Disorder (ASD)"
+                    : "✅ You are doing well. Your brain seems to be developing typically "
                   }
                 </p>
               </div>
