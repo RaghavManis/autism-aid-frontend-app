@@ -1,29 +1,35 @@
 
 // Configuration for backend API endpoints
-export const API_ENDPOINTS = {
-  // Primary autism screening prediction endpoint
-  PREDICT: {
-    development: 'http://localhost:5000/predict',
-    staging: 'https://staging-api.example.com/predict',
-    production: 'https://api.autismaid.com/predict'
-  },
-  
-  // Additional endpoints can be added here
-  USER_ASSESSMENT: {
-    development: 'http://localhost:5000/user-assessment',
-    staging: 'https://staging-api.example.com/user-assessment',
-    production: 'https://api.autismaid.com/user-assessment'
-  },
-  
-  // Example of additional service endpoints
-  ADDITIONAL_SERVICE: {
-    development: 'http://localhost:5000/additional-service',
-    staging: 'https://staging-api.example.com/additional-service',
-    production: 'https://api.autismaid.com/additional-service'
-  }
+const API_BASE_URL = {
+  development: 'http://localhost:5000',
+  staging: 'https://staging-api.example.com',
+  production: 'https://asd-5m1p.onrender.com'
 };
 
-// Utility to get the correct environment
-export const getApiUrl = (service, environment = 'development') => {
-  return API_ENDPOINTS[service][environment];
+// Get the appropriate API URL based on environment
+export const getApiUrl = (endpoint, environment = 'production') => {
+  const env = environment || 'production';
+  
+  if (endpoint === 'PREDICT') {
+    return `${API_BASE_URL[env]}/api/`;
+  }
+  
+  // For other endpoints, use the standard format
+  const endpoints = API_ENDPOINTS[endpoint];
+  return endpoints ? endpoints[env] : null;
+};
+
+// Additional API endpoints
+export const API_ENDPOINTS = {
+  USER_ASSESSMENT: {
+    development: `${API_BASE_URL.development}/user-assessment`,
+    staging: `${API_BASE_URL.staging}/user-assessment`,
+    production: `${API_BASE_URL.production}/user-assessment`
+  },
+  
+  ADDITIONAL_SERVICE: {
+    development: `${API_BASE_URL.development}/additional-service`,
+    staging: `${API_BASE_URL.staging}/additional-service`,
+    production: `${API_BASE_URL.production}/additional-service`
+  }
 };
