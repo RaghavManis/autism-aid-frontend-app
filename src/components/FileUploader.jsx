@@ -12,7 +12,7 @@ const FileUploader = () => {
   const [result, setResult] = useState(null);
   const fileInputRef = useRef(null);
 
-  const allowedFileTypes = ["image/jpeg", "image/png", "application/pdf", "text/csv"];
+  const allowedFileTypes = ["image/jpeg", "image/png", "application/pdf", "text/csv", "application/octet-stream", "text/plain"];
   const maxFileSize = 10 * 1024 * 1024; // 10MB
 
   const handleDragEnter = (e) => {
@@ -36,8 +36,10 @@ const FileUploader = () => {
   };
 
   const validateFile = (file) => {
-    if (!allowedFileTypes.includes(file.type)) {
-      setError("Invalid file type. Please upload jpeg, png, pdf or csv files.");
+    const fileExtension = file.name.split('.').pop().toLowerCase();
+    
+    if (!allowedFileTypes.includes(file.type) && fileExtension !== "1d") {
+      setError("Invalid file type. Please upload jpeg, png, pdf, csv, or 1D files.");
       return false;
     }
 
@@ -104,7 +106,8 @@ const FileUploader = () => {
     setError("");
 
     try {
-      const predictionUrl = getApiUrl('PREDICT', process.env.NODE_ENV);
+      // Using the new API endpoint
+      const predictionUrl = "https://asd-5m1p.onrender.com/api/";
       
       const formData = new FormData();
       formData.append('file', file);
@@ -185,7 +188,7 @@ const FileUploader = () => {
               or click to browse
             </p>
             <p className="mt-4 text-xs text-gray-500 dark:text-gray-400">
-              Supports JPEG, PNG, PDF, and CSV up to 10MB
+              Supports JPEG, PNG, PDF, CSV, and 1D files up to 10MB
             </p>
             <button
               onClick={() => fileInputRef.current?.click()}
@@ -196,7 +199,7 @@ const FileUploader = () => {
             <input
               ref={fileInputRef}
               type="file"
-              accept=".jpg,.jpeg,.png,.pdf,.csv"
+              accept=".jpg,.jpeg,.png,.pdf,.csv,.1d"
               className="hidden"
               onChange={handleFileChange}
             />
